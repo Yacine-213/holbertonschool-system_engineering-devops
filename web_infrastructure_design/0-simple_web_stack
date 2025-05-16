@@ -1,0 +1,49 @@
+📌 Designing a One-Server Web Infrastructure
+
+1️⃣ Objective
+To set up a single-server infrastructure that hosts a website accessible at www.foobar.com. The explanation outlines the flow of a user request from their browser to the server.
+
+2️⃣ Components
+
+✔ Domain Name: foobar.com
+A human-readable address instead of an IP.
+
+✔ DNS Record: www.foobar.com
+Type: A record
+Maps www.foobar.com to the IP address 8.8.8.8.
+
+✔ Single Server (IP: 8.8.8.8)
+Hosts all services:
+- Nginx → Handles HTTP requests.
+- Application Server → Processes backend logic.
+- Application Files → HTML, CSS, JS, backend scripts.
+- MySQL → Stores website data.
+
+3️⃣ 🔄 Request Flow
+
+1. User enters www.foobar.com in their browser.
+2. DNS resolves the domain to IP 8.8.8.8.
+3. Nginx receives the request:
+   - For static files → serves them directly.
+   - For dynamic content → forwards to the app server.
+4. App server processes the request and queries MySQL if needed.
+5. MySQL sends the data back.
+6. Nginx sends the final response to the user's browser.
+
+4️⃣ 🔴 Infrastructure Limitations
+
+⚠️ Single Point of Failure (SPOF)
+If the server goes down, the whole website becomes unavailable.
+
+⚠️ Downtime During Maintenance
+Restarting services or updating code causes interruptions.
+
+⚠️ Scalability Issues
+Heavy traffic may slow down or crash the server. No load balancing.
+
+5️⃣ 🔧 Potential Improvements
+
+✅ Add a second server to reduce failure risk.
+✅ Use a load balancer to manage traffic.
+✅ Replicate the database for better performance and reliability.
+
